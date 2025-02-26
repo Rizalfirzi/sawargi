@@ -178,10 +178,12 @@
     </div>
 
     <footer>
-        <p>&copy; {{ date('Y') }} SAWARGI_ID.</p>
+        <p>&copy; <span id="year"></span> SAWARGI_ID.</p>
     </footer>
 
     <script>
+        document.getElementById("year").textContent = new Date().getFullYear();
+
         document.querySelectorAll('.links a').forEach(button => {
             button.addEventListener('click', function (e) {
                 e.preventDefault(); // Hilangkan aksi default
