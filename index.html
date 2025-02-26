@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sawargi_id</title>
+    <link rel="shortcut icon" href="images/logo.png" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-image: url('images/bg.png');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
+
+        .container {
+            background: rgb(75 72 64 / 55%);
+            padding: 20px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            /* Efek blur */
+            -webkit-backdrop-filter: blur(10px);
+            /* Safari support */
+            transform: scale(0.8);
+            opacity: 0;
+            animation: zoomIn 0.5s forwards 0.5s;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            /* Border halus */
+        }
+
+        .profile img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        .profile h2 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .links a {
+            display: block;
+            background: linear-gradient(135deg, #3498db, #6dd5fa);
+            color: white;
+            text-decoration: none;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 30px;
+            font-weight: bold;
+            text-transform: uppercase;
+            transition: all 0.3s ease-in-out;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideUp 0.5s forwards;
+        }
+        .links a:nth-child(1) { animation-delay: 1s; }
+        .links a:nth-child(2) { animation-delay: 1.2s; }
+        .links a:nth-child(3) { animation-delay: 1.4s; }
+        .links a:nth-child(4) { animation-delay: 1.6s; }
+        .links a:hover {
+            background: linear-gradient(135deg, #6dd5fa, #3498db);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        }
+        .links a::after {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.3);
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%) scale(0);
+            transition: transform 0.3s ease-out;
+            border-radius: 50%;
+        }
+        .links a:active::after {
+            transform: translateX(-50%) scale(2);
+            opacity: 0;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        footer {
+            position: fixed;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            opacity: 0;
+            animation: fadeIn 1.5s forwards 2s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="profile">
+            <img src="images/logo.png" alt="Profile Picture">
+            <h2 style="color: white">SAWARGI_ID</h2>
+        </div>
+        <div class="links">
+            <a href="https://www.instagram.com" target="_blank">Instagram</a>
+            <a href="https://shopee.co.id" target="_blank">Shopee</a>
+            <a href="https://www.tiktok.com" target="_blank">TikTok</a>
+            <a href="https://wa.me/6281234567890" target="_blank">WhatsApp</a>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; {{ date('Y') }} SAWARGI_ID.</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('.links a').forEach(button => {
+            button.addEventListener('click', function (e) {
+                e.preventDefault(); // Hilangkan aksi default
+                let target = this.getAttribute('href');
+                let ripple = document.createElement('span');
+                ripple.classList.add('ripple');
+                this.appendChild(ripple);
+                setTimeout(() => {
+                    window.open(target, '_blank'); // Buka link di tab baru setelah animasi
+                    ripple.remove(); // Hapus efek ripple
+                }, 300);
+            });
+        });
+    </script>
+</body>
+
+</html>
